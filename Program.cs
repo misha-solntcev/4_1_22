@@ -22,10 +22,10 @@ namespace _4_1_22
             int[,] arr = new int[,]
             {
                 { 8, 1, 6, 4, 8 },
-                { 4, 0, 5, 7, 8 },
-                { 7, 8, 9, 0, 2 },
-                { 8, 0, 3, 4, 5 },
-                { 9, 0, 4, 0, 1 },
+                { 4, 2, 5, 7, 8 },
+                { 7, 8, 9, 1, 2 },
+                { 8, 2, 3, 4, 5 },
+                { 7, 3, 4, 3, 5 },
             };
             int n = arr.GetLength(0);
             int m = arr.GetLength(1);
@@ -65,7 +65,51 @@ namespace _4_1_22
                     Console.Write($"{newArr[i, j]}, ");
                 }
                 Console.WriteLine();
-            }                
+            }
+
+            //Новый массив.
+            int[,] array = new int[,]
+            {
+                { 8, 1, 6, 4, 8 },
+                { 4, 2, 5, 7, 8 },
+                { 7, 8, 9, 1, 2 },
+                { 8, 2, 3, 4, 5 },
+                { 5, 3, 4, 3, 5 },
+            };
+            int N = array.GetLength(0);
+            int M = array.GetLength(1);
+
+            // Циклический сдвиг.
+            int[,] newArray = new int[N,M];
+            int dI = 4;
+            for (int i = 0; i < N; i++)
+            {                
+                int dJ = 0;
+                Console.WriteLine($"    i={i},dI={dI}");
+                for (int j = 0; j < M; j++)                    
+                {
+                    Console.Write($"j={j},dJ={dJ} / ");
+                    newArray[i, j] = array[i + dI, j - dJ] ;
+                    dJ++;                   
+                }
+                dI--;
+                Console.WriteLine();
+            }
+
+            // Вывод измененного массива.
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    Console.Write($"{newArray[i, j]}, ");
+                }
+                Console.WriteLine();
+            }
+
+            int o = 0; int q = 0; 
+            int d1 = 0; int d2 = 0;
+            Console.WriteLine(array[o + d1, q + d2]);
+
 
             Console.ReadKey();
         }
